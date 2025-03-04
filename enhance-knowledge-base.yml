@@ -1,0 +1,467 @@
+app:
+  description: Helps users find out about InfraNodus functionality as well as network
+    science and text analysis
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: Nodus Labs Support Augmented with InfraNodus
+  use_icon_as_answer_icon: true
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables:
+  - description: ''
+    id: 62f01643-eec3-456d-b228-b84a64abdde6
+    name: InfraNodusGraph
+    selector:
+    - conversation
+    - InfraNodusGraph
+    value: ''
+    value_type: string
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: true
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        sourceType: llm
+        targetType: answer
+      id: llm-answer
+      source: llm
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1738749746221-source-llm-target
+      source: '1738749746221'
+      sourceHandle: source
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: knowledge-retrieval
+      id: 1738874767823-source-1738749746221-target
+      source: '1738874767823'
+      sourceHandle: source
+      target: '1738749746221'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: tool
+        targetType: assigner
+      id: 1740944388985-source-1741115500561-target
+      source: '1740944388985'
+      sourceHandle: source
+      target: '1741115500561'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: llm
+      id: 1741115500561-source-1738874767823-target
+      source: '1741115500561'
+      sourceHandle: source
+      target: '1738874767823'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: if-else
+      id: 1738749667937-source-1741120918022-target
+      source: '1738749667937'
+      sourceHandle: source
+      target: '1741120918022'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1741120918022-false-1738874767823-target
+      source: '1741120918022'
+      sourceHandle: 'false'
+      target: '1738874767823'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: tool
+      id: 1741120918022-1fa3904d-8e6b-4774-b95d-4e2d6055fa6b-1740944388985-target
+      source: '1741120918022'
+      sourceHandle: 1fa3904d-8e6b-4774-b95d-4e2d6055fa6b
+      target: '1740944388985'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables: []
+      height: 54
+      id: '1738749667937'
+      position:
+        x: 96.3625912236891
+        y: 6.449467566325765
+      positionAbsolute:
+        x: 96.3625912236891
+        y: 6.449467566325765
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1738749746221'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai
+        prompt_template:
+        - id: 9df6b409-6428-4235-9edc-04228c08ff23
+          role: system
+          text: "You are an expert in InfraNodus, and your task is to provide an answer\
+            \ to the user question based on the context you are provided about using\
+            \ InfraNodus and its tool.\n\n## IMPORTANT INSTRUCTIONS, FOLLOW WHEN ANSWERING:\n\
+            \nWhen you provide a response, use the following meta information about\
+            \ the underlying knowledge base to have a high-level overview of the content\
+            \ and to provide higher quality responses that integrate this content,\
+            \ in cases when relevant to the query (or when the query is too general\
+            \ to find results):\n\n- the main topics in the context (listed inside\
+            \ the <MainTopics></MainTopics> XML tag) — you should focus on them especially\n\
+            - relations between the concepts (listed inside <Relations></Relations>\
+            \ and <MainConcepts></MainConcepts> XML tag) — these are the most important\
+            \ ideas and relations in the context\n- latent topics inside (listed inside\
+            \ <LatentTopics></LatentTopics> - these are non-obvious topics that you\
+            \ can take into account\n- conceptual entry points (listed inside <ConceptualGateways></ConceptualGateways>\
+            \ XML tag) — use them to connect topics or to connect the knowledge to\
+            \ the outside world\n\n{{#conversation.InfraNodusGraph#}}\n\n\n## CONTEXT\
+            \ INFORMATION: \n\nUse the following context as your learned knowledge,\
+            \ inside <context></context> XML tags.\n<context>\n{{#context#}}\n</context>\n\
+            \nDo not hallucinate answers, ONLY use the context provided to generate\
+            \ responses, and provide references to all the context elements you use\
+            \ for your response in inline links with links to the URLs where these\
+            \ results can be found .\n\nIf you didn't use any of the context documents\
+            \ to generate your response but generated it from your own knowledge,\
+            \ inform the user about it at the beginning.\n\nKeep your answers VERY\
+            \ SHORT and concise. Only the minimum necessary.\n\n\n\n\n"
+        selected: false
+        title: LLM
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: llm
+      position:
+        x: 787.2478250433957
+        y: 556.9948515036397
+      positionAbsolute:
+        x: 787.2478250433957
+        y: 556.9948515036397
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#llm.text#}}'
+        desc: ''
+        selected: false
+        title: Answer
+        type: answer
+        variables: []
+      height: 103
+      id: answer
+      position:
+        x: 1048.9516275952324
+        y: 796.4711943109933
+      positionAbsolute:
+        x: 1048.9516275952324
+        y: 796.4711943109933
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 8d2a881f-aacb-48a6-b464-4d77e26f7446
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: weighted_score
+          reranking_model:
+            model: ''
+            provider: ''
+          score_threshold: null
+          top_k: 10
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: text-embedding-3-small
+              embedding_provider_name: openai
+              vector_weight: 0.7
+        query_variable_selector:
+        - '1738749667937'
+        - sys.query
+        retrieval_mode: multiple
+        selected: false
+        title: Knowledge Retrieval
+        type: knowledge-retrieval
+      height: 92
+      id: '1738749746221'
+      position:
+        x: 433.7813724611182
+        y: 449.35378262244336
+      positionAbsolute:
+        x: 433.7813724611182
+        y: 449.35378262244336
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai
+        prompt_template:
+        - id: fc350416-a1f4-4c0a-b3db-5929d5001f1e
+          role: system
+          text: "You receive a user query relating to InfraNodus text network analysis\
+            \ tool. \n\nIf the user query is specific, you just pass it on without\
+            \ changing anything. \n\nHowever, if it's too general or not too precise,\
+            \ you need to make it more specific by adding the following context to\
+            \ it. \n\nIMPORTANT: Make sure the final query is not much longer than\
+            \ the original one. Just add only the most important necessary information.\
+            \ \n\n## CONTEXT TO ADD\n\n### Context Explanation: \n- the main topics\
+            \ in the context (listed inside the <MainTopics></MainTopics> XML tag)\
+            \ — you should focus on them especially\n- relations between the concepts\
+            \ (listed inside <Relations></Relations> and <MainConcepts></MainConcepts>\
+            \ XML tag) — these are the most important ideas and relations in the context\n\
+            - latent topics inside (listed inside <LatentTopics></LatentTopics> -\
+            \ these are non-obvious topics that you can take into account\n- conceptual\
+            \ entry points (listed inside <ConceptualGateways></ConceptualGateways>\
+            \ XML tag) — use them to connect topics or to connect the knowledge to\
+            \ the outside world\n\n\n### Context Details:\n{{#conversation.InfraNodusGraph#}}\n"
+        - id: 62646113-87f0-469e-adce-f283f1b25a74
+          role: user
+          text: '{{#sys.query#}}'
+        selected: false
+        title: LLM Prompt Augmentor
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '1738874767823'
+      position:
+        x: 904.8025455053339
+        y: 328.7529802468277
+      positionAbsolute:
+        x: 904.8025455053339
+        y: 328.7529802468277
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        provider_id: d37245bb-38d5-4844-86fe-57053a9fda24
+        provider_name: InfraNodus Knowledge Graph from Text
+        provider_type: api
+        retry_config:
+          max_retries: 3
+          retry_enabled: false
+          retry_interval: 1000
+        selected: false
+        title: INFRANODUS ENHANCER
+        tool_configurations: {}
+        tool_label: graphAndStatements_post
+        tool_name: graphAndStatements_post
+        tool_parameters:
+          addStats:
+            type: mixed
+            value: 'true'
+          aiTopics:
+            type: mixed
+            value: 'true'
+          doNotSave:
+            type: mixed
+            value: 'true'
+          includeGraph:
+            type: mixed
+            value: 'false'
+          includeGraphSummary:
+            type: mixed
+            value: 'true'
+          includeStatements:
+            type: mixed
+            value: ''
+          name:
+            type: mixed
+            value: support_nodus_labs
+          text:
+            type: mixed
+            value: ''
+        type: tool
+      height: 54
+      id: '1740944388985'
+      position:
+        x: 582.0077681323086
+        y: 92.65064115823111
+      positionAbsolute:
+        x: 582.0077681323086
+        y: 92.65064115823111
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1740944388985'
+          - text
+          variable_selector:
+          - conversation
+          - InfraNodusGraph
+          write_mode: over-write
+        selected: false
+        title: Variable Assigner
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1741115500561'
+      position:
+        x: 753.2830404031895
+        y: 189.68903877947983
+      positionAbsolute:
+        x: 753.2830404031895
+        y: 189.68903877947983
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 1fa3904d-8e6b-4774-b95d-4e2d6055fa6b
+          conditions:
+          - comparison_operator: empty
+            id: 2a1da96f-c0ad-4e3d-b840-942e694a6053
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - InfraNodusGraph
+          id: 1fa3904d-8e6b-4774-b95d-4e2d6055fa6b
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: IF/ELSE
+        type: if-else
+      height: 126
+      id: '1741120918022'
+      position:
+        x: 231.23906822165054
+        y: 153.83662252932115
+      positionAbsolute:
+        x: 231.23906822165054
+        y: 153.83662252932115
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -15.428548595841903
+      y: 50.32970860824747
+      zoom: 0.7061272021923787
