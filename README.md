@@ -1,6 +1,6 @@
 # Useful InfraNodus Workflows for Dify
 
-A collection of Dify and InfraNodus integrations.
+A collection of [Dify](https://dify.ai) and [InfraNodus](https://infranodus.com) integrations.
 
 Use them to create your own chatbots, AI workflows, and agent.
 
