@@ -1,0 +1,334 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "InfraNodus Graph API",
+      "description": "API for generating and retrieving advice from text data",
+      "version": "1.0.0",
+      "contact": {
+        "name": "InfraNodus Support"
+      }
+    },
+    "externalDocs": {
+      "description": "API Access Information",
+      "url": "https://infranodus.com/api-access"
+    },
+    "servers": [
+      {
+        "url": "https://infranodus.com/api/v1",
+        "description": "Production server"
+      }
+    ],
+    "paths": {
+      "/graphAndStatements": {
+        "post": {
+          "summary": "Obtain AI Advice, Statements, Graph, and Graph Summary",
+          "description": "Submit text or statements to generate a knowledge graph, or retrieve an existing graph. The API will provide an AI advice based on your request (e.g. questions that bridge the gap), as well as the graph JSON object, statements, and optionally a graph summary with insights about topical clusters, main concepts, gaps, and conceptual gateways in the text.",
+          "parameters": [
+            {
+              "name": "doNotSave",
+              "in": "query",
+              "description": "If true (default), the text will not be saved to the user's graphs or in the database",
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            {
+              "name": "addStats",
+              "in": "query",
+              "description": "If true (default), adds statistical information to the response",
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            {
+              "name": "optimize",
+              "in": "query",
+              "description": "If set to gap will find a blind spot and propose an idea to bridge it",
+              "schema": {
+                "type": "string",
+                "default": "develop"
+              }
+            },
+            {
+              "name": "includeStatements",
+              "in": "query",
+              "description": "Whether to include statements in the response",
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            {
+              "name": "includeGraphSummary",
+              "in": "query",
+              "description": "Whether to include a graph summary in the response",
+              "schema": {
+                "type": "boolean",
+                "default": false
+              }
+            },
+            {
+              "name": "includeGraph",
+              "in": "query",
+              "description": "Whether to include the graph object in the response",
+              "schema": {
+                "type": "boolean",
+                "default": true
+              }
+            },
+            {
+              "name": "gapDepth",
+              "in": "query",
+              "description": "Higher value (up to 3) will retrieve more diverse gaps",
+              "schema": {
+                "type": "integer",
+                "default": 0
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "Text or statements to analyze, or the name of an existing graph",
+            "required": true,
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "oneOf": [
+                    {
+                      "required": ["name"]
+                    },
+                    {
+                      "required": ["text"]
+                    }
+                  ],
+                  "properties": {
+                    "name": {
+                      "type": "string",
+                      "description": "The name of the graph to be created or retrieved"
+                    },
+                    "text": {
+                      "type": "string",
+                      "description": "Text string to process where statements are separated with the \\n symbol and that contains concepts and relations"
+                    },
+                    "aiTopics": {
+                      "type": "boolean",
+                      "description": "Flag to indicate whether AI should identify topics in the text",
+                      "default": "true"
+                    },
+                    "modelToUse": {
+                      "type": "string",
+                      "description": "AI model to use when making a request. gpt-4 or gpt-4o-mini",
+                      "default": "gpt-4o-mini"
+                    },
+                    "requestMode": {
+                      "type": "string",
+                      "description": "Request mode to use when making a request. question, response, idea.",
+                      "default": "question"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Successful response with graph data",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "graph": {
+                        "type": "object",
+                        "description": "The knowledge graph object",
+                        "properties": {
+                          "nodes": {
+                            "type": "array",
+                            "description": "Array of nodes in the graph",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "id": {
+                                  "type": "string"
+                                },
+                                "label": {
+                                  "type": "string"
+                                },
+                                "weight": {
+                                  "type": "number"
+                                },
+                                "community": {
+                                  "type": "integer"
+                                },
+                                "betweenness": {
+                                  "type": "number"
+                                },
+                                "x": {
+                                  "type": "number"
+                                },
+                                "y": {
+                                  "type": "number"
+                                },
+                                "uid": {
+                                  "type": "string"
+                                },
+                                "category": {
+                                  "type": "string"
+                                },
+                                "topnode": {
+                                  "type": "integer"
+                                }
+                              }
+                            }
+                          },
+                          "edges": {
+                            "type": "array",
+                            "description": "Array of edges in the graph",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "source": {
+                                  "type": "string"
+                                },
+                                "target": {
+                                  "type": "string"
+                                },
+                                "id": {
+                                  "type": "string"
+                                },
+                                "weight": {
+                                  "type": "number"
+                                }
+                              }
+                            }
+                          }
+                        }
+                      },
+                      "statements": {
+                        "type": "array",
+                        "description": "Array of statements extracted from the text",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "uid": {
+                              "type": "integer"
+                            },
+                            "name": {
+                              "type": "string"
+                            },
+                            "text": {
+                              "type": "string"
+                            },
+                            "context": {
+                              "type": "string"
+                            },
+                            "statement_id": {
+                              "type": "string"
+                            },
+                            "by": {
+                              "type": "string"
+                            },
+                            "timestamp": {
+                              "type": "string",
+                              "format": "date-time"
+                            }
+                          }
+                        }
+                      },
+                      "graphSummary": {
+                        "type": "string",
+                        "description": "A text summary with insights about the graph"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "Graph not found",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Server error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "apiKey": []
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "apiKey": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT",
+          "description": "To authorize, obtain your API token at https://infranodus.com/api-access and include it in the Authorization header as 'Bearer your_api_token_here'"
+        }
+      }
+    },
+    "tags": [
+      {
+        "name": "Graph Operations",
+        "description": "Endpoints for working with knowledge graphs"
+      }
+    ]
+  }
