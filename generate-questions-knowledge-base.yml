@@ -10,61 +10,69 @@ kind: app
 version: 0.1.5
 workflow:
   conversation_variables:
-    - description: ""
-      id: 0061fd58-fd2e-4183-8468-ab1936d9bc7c
-      name: KBFromAIQuery
-      selector:
-        - conversation
-        - KBFromAIQuery
-      value: []
-      value_type: array[object]
-    - description: ""
-      id: 46b4ae96-8db7-4cc7-98d7-c4c3633781d4
-      name: KBFromUserQuery
-      selector:
-        - conversation
-        - KBFromUserQuery
-      value: []
-      value_type: array[object]
-    - description: ""
-      id: a41e1283-ce63-45a4-806c-c65baec9deba
-      name: InfraNodusGraphSummary
-      selector:
-        - conversation
-        - InfraNodusGraphSummary
-      value: ""
-      value_type: string
-    - description: ""
-      id: db3365d0-9b50-494d-bc26-a47ad93d80c3
-      name: InfraNodusAdvice
-      selector:
-        - conversation
-        - InfraNodusAdvice
-      value: ""
-      value_type: string
-    - description: ""
-      id: 62f01643-eec3-456d-b228-b84a64abdde6
-      name: InfraNodusResponse
-      selector:
-        - conversation
-        - InfraNodusResponse
-      value: ""
-      value_type: string
+  - description: ''
+    id: 61c2ce0e-46d9-4aab-8043-c4d59fc7c10a
+    name: FirstChatAnswer
+    selector:
+    - conversation
+    - FirstChatAnswer
+    value: ''
+    value_type: string
+  - description: ''
+    id: 0061fd58-fd2e-4183-8468-ab1936d9bc7c
+    name: KBFromAIQuery
+    selector:
+    - conversation
+    - KBFromAIQuery
+    value: []
+    value_type: array[object]
+  - description: ''
+    id: 46b4ae96-8db7-4cc7-98d7-c4c3633781d4
+    name: KBFromUserQuery
+    selector:
+    - conversation
+    - KBFromUserQuery
+    value: []
+    value_type: array[object]
+  - description: ''
+    id: a41e1283-ce63-45a4-806c-c65baec9deba
+    name: InfraNodusGraphSummary
+    selector:
+    - conversation
+    - InfraNodusGraphSummary
+    value: ''
+    value_type: string
+  - description: ''
+    id: db3365d0-9b50-494d-bc26-a47ad93d80c3
+    name: InfraNodusAdvice
+    selector:
+    - conversation
+    - InfraNodusAdvice
+    value: ''
+    value_type: string
+  - description: ''
+    id: 62f01643-eec3-456d-b228-b84a64abdde6
+    name: InfraNodusResponse
+    selector:
+    - conversation
+    - InfraNodusResponse
+    value: ''
+    value_type: string
   environment_variables: []
   features:
     file_upload:
       allowed_file_extensions:
-        - .JPG
-        - .JPEG
-        - .PNG
-        - .GIF
-        - .WEBP
-        - .SVG
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
       allowed_file_types:
-        - image
+      - image
       allowed_file_upload_methods:
-        - local_file
-        - remote_url
+      - local_file
+      - remote_url
       enabled: false
       fileUploadConfig:
         audio_file_size_limit: 50
@@ -77,11 +85,10 @@ workflow:
         enabled: false
         number_limits: 3
         transfer_methods:
-          - local_file
-          - remote_url
+        - local_file
+        - remote_url
       number_limits: 3
-    opening_statement:
-      Click the button to generate an interesting research question
+    opening_statement: Click the button to generate an interesting research question
       that will query the InfraNodus support portal.
     retriever_resource:
       enabled: true
@@ -90,618 +97,809 @@ workflow:
     speech_to_text:
       enabled: false
     suggested_questions:
-      - Generate Question
+    - Generate Question
     suggested_questions_after_answer:
       enabled: false
     text_to_speech:
       enabled: false
-      language: ""
-      voice: ""
+      language: ''
+      voice: ''
   graph:
     edges:
-      - data:
-          sourceType: llm
-          targetType: answer
-        id: llm-answer
-        source: llm
-        sourceHandle: source
-        target: answer
-        targetHandle: target
-        type: custom
-      - data:
-          isInIteration: false
-          sourceType: http-request
-          targetType: assigner
-        id: 1741117081804-source-1741123748093-target
-        source: "1741117081804"
-        sourceHandle: source
-        target: "1741123748093"
-        targetHandle: target
-        type: custom
-        zIndex: 0
-      - data:
-          isInIteration: false
-          sourceType: assigner
-          targetType: code
-        id: 1741123748093-source-1741123840933-target
-        source: "1741123748093"
-        sourceHandle: source
-        target: "1741123840933"
-        targetHandle: target
-        type: custom
-        zIndex: 0
-      - data:
-          isInIteration: false
-          sourceType: code
-          targetType: assigner
-        id: 1741123840933-source-1741254723941-target
-        source: "1741123840933"
-        sourceHandle: source
-        target: "1741254723941"
-        targetHandle: target
-        type: custom
-        zIndex: 0
-      - data:
-          isInIteration: false
-          sourceType: code
-          targetType: assigner
-        id: 1741123840933-source-1741254931276-target
-        source: "1741123840933"
-        sourceHandle: source
-        target: "1741254931276"
-        targetHandle: target
-        type: custom
-        zIndex: 0
-      - data:
-          isInIteration: false
-          sourceType: assigner
-          targetType: answer
-        id: 1741254723941-source-1741255828710-target
-        source: "1741254723941"
-        sourceHandle: source
-        target: "1741255828710"
-        targetHandle: target
-        type: custom
-        zIndex: 0
-      - data:
-          isInIteration: false
-          sourceType: start
-          targetType: if-else
-        id: 1738749667937-source-1741256512747-target
-        source: "1738749667937"
-        sourceHandle: source
-        target: "1741256512747"
-        targetHandle: target
-        type: custom
-        zIndex: 0
-      - data:
-          isInIteration: false
-          sourceType: if-else
-          targetType: http-request
-        id: 1741256512747-true-1741117081804-target
-        source: "1741256512747"
-        sourceHandle: "true"
-        target: "1741117081804"
-        targetHandle: target
-        type: custom
-        zIndex: 0
-      - data:
-          isInIteration: false
-          sourceType: assigner
-          targetType: answer
-        id: 1741254931276-source-1741255828710-target
-        source: "1741254931276"
-        sourceHandle: source
-        target: "1741255828710"
-        targetHandle: target
-        type: custom
-        zIndex: 0
-      - data:
-          isInIteration: false
-          sourceType: if-else
-          targetType: knowledge-retrieval
-        id: 1741256512747-false-1741256114934-target
-        source: "1741256512747"
-        sourceHandle: "false"
-        target: "1741256114934"
-        targetHandle: target
-        type: custom
-        zIndex: 0
-      - data:
-          isInIteration: false
-          sourceType: if-else
-          targetType: knowledge-retrieval
-        id: 1741256512747-false-1741258700226-target
-        source: "1741256512747"
-        sourceHandle: "false"
-        target: "1741258700226"
-        targetHandle: target
-        type: custom
-        zIndex: 0
-      - data:
-          isInIteration: false
-          sourceType: knowledge-retrieval
-          targetType: code
-        id: 1741256114934-source-1741259222537-target
-        source: "1741256114934"
-        sourceHandle: source
-        target: "1741259222537"
-        targetHandle: target
-        type: custom
-        zIndex: 0
-      - data:
-          isInIteration: false
-          sourceType: knowledge-retrieval
-          targetType: code
-        id: 1741258700226-source-1741259222537-target
-        source: "1741258700226"
-        sourceHandle: source
-        target: "1741259222537"
-        targetHandle: target
-        type: custom
-        zIndex: 0
-      - data:
-          isInIteration: false
-          sourceType: code
-          targetType: llm
-        id: 1741259222537-source-llm-target
-        source: "1741259222537"
-        sourceHandle: source
-        target: llm
-        targetHandle: target
-        type: custom
-        zIndex: 0
+    - data:
+        sourceType: llm
+        targetType: answer
+      id: llm-answer
+      source: llm
+      sourceHandle: source
+      target: answer
+      targetHandle: target
+      type: custom
+    - data:
+        isInIteration: false
+        sourceType: http-request
+        targetType: assigner
+      id: 1741117081804-source-1741123748093-target
+      source: '1741117081804'
+      sourceHandle: source
+      target: '1741123748093'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: code
+      id: 1741123748093-source-1741123840933-target
+      source: '1741123748093'
+      sourceHandle: source
+      target: '1741123840933'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: assigner
+      id: 1741123840933-source-1741254723941-target
+      source: '1741123840933'
+      sourceHandle: source
+      target: '1741254723941'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: assigner
+      id: 1741123840933-source-1741254931276-target
+      source: '1741123840933'
+      sourceHandle: source
+      target: '1741254931276'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: answer
+      id: 1741254723941-source-1741255828710-target
+      source: '1741254723941'
+      sourceHandle: source
+      target: '1741255828710'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: start
+        targetType: if-else
+      id: 1738749667937-source-1741256512747-target
+      source: '1738749667937'
+      sourceHandle: source
+      target: '1741256512747'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: http-request
+      id: 1741256512747-true-1741117081804-target
+      source: '1741256512747'
+      sourceHandle: 'true'
+      target: '1741117081804'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: assigner
+        targetType: answer
+      id: 1741254931276-source-1741255828710-target
+      source: '1741254931276'
+      sourceHandle: source
+      target: '1741255828710'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 1741256512747-false-1741256114934-target
+      source: '1741256512747'
+      sourceHandle: 'false'
+      target: '1741256114934'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: knowledge-retrieval
+      id: 1741256512747-false-1741258700226-target
+      source: '1741256512747'
+      sourceHandle: 'false'
+      target: '1741258700226'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: code
+      id: 1741256114934-source-1741259222537-target
+      source: '1741256114934'
+      sourceHandle: source
+      target: '1741259222537'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: knowledge-retrieval
+        targetType: code
+      id: 1741258700226-source-1741259222537-target
+      source: '1741258700226'
+      sourceHandle: source
+      target: '1741259222537'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: assigner
+      id: llm-source-1741260440489-target
+      source: llm
+      sourceHandle: source
+      target: '1741260440489'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: code
+        targetType: if-else
+      id: 1741259222537-source-1741261117254-target
+      source: '1741259222537'
+      sourceHandle: source
+      target: '1741261117254'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1741261117254-true-llm-target
+      source: '1741261117254'
+      sourceHandle: 'true'
+      target: llm
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: if-else
+        targetType: llm
+      id: 1741261117254-false-17412610932500-target
+      source: '1741261117254'
+      sourceHandle: 'false'
+      target: '17412610932500'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        sourceType: llm
+        targetType: answer
+      id: 17412610932500-source-1741261630716-target
+      source: '17412610932500'
+      sourceHandle: source
+      target: '1741261630716'
+      targetHandle: target
+      type: custom
+      zIndex: 0
     nodes:
-      - data:
-          desc: ""
-          selected: false
-          title: Start
-          type: start
-          variables: []
-        height: 54
-        id: "1738749667937"
-        position:
-          x: 9.340901853528976
-          y: -96.24128723823091
-        positionAbsolute:
-          x: 9.340901853528976
-          y: -96.24128723823091
-        selected: true
-        sourcePosition: right
-        targetPosition: left
-        type: custom
-        width: 244
-      - data:
-          context:
-            enabled: true
-            variable_selector:
-              - "1741259222537"
-              - result
-          desc: ""
-          memory:
-            query_prompt_template: "{{#conversation.InfraNodusAdvice#}}{{#sys.query#}}"
-            role_prefix:
-              assistant: ""
-              user: ""
-            window:
-              enabled: false
-              size: 10
-          model:
-            completion_params:
-              temperature: 0.7
-            mode: chat
-            name: gpt-4o-mini
-            provider: openai
-          prompt_template:
-            - id: 9df6b409-6428-4235-9edc-04228c08ff23
-              role: system
-              text:
-                "You are an expert in InfraNodus, and your task is to provide an answer\
-                \ to the user question based on the context you are provided about using\
-                \ InfraNodus and its tool.\n\n## IMPORTANT INSTRUCTIONS, FOLLOW WHEN ANSWERING:\n\
-                \nWhen you provide a response, use the following meta information about\
-                \ the underlying knowledge base to have a high-level overview of the content\
-                \ and to provide higher quality responses that integrate this content,\
-                \ in cases when relevant to the query (or when the query is too general\
-                \ to find results):\n\n- the main topics in the context (listed inside\
-                \ the <MainTopics></MainTopics> XML tag) — you should focus on them especially\n\
-                - relations between the concepts (listed inside <Relations></Relations>\
-                \ and <MainConcepts></MainConcepts> XML tag) — these are the most important\
-                \ ideas and relations in the context\n- latent topics inside (listed inside\
-                \ <LatentTopics></LatentTopics> - these are non-obvious topics that you\
-                \ can take into account\n- conceptual entry points (listed inside <ConceptualGateways></ConceptualGateways>\
-                \ XML tag) — use them to connect topics or to connect the knowledge to\
-                \ the outside world\n\n{{#conversation.InfraNodusGraphSummary#}}\n\n\n\
-                ## CONTEXT INFORMATION: \n\nUse the following context as your learned\
-                \ knowledge, inside <context></context> XML tags.\n<context>\n{{#context#}}\n\
-                </context>\n\nDo not hallucinate answers, ONLY use the context provided\
-                \ to generate responses, and provide references to all the context elements\
-                \ you use for your response in inline links with links to the URLs where\
-                \ these results can be found .\n\nIf you didn't use any of the context\
-                \ documents to generate your response but generated it from your own knowledge,\
-                \ inform the user about it at the beginning.\n\nKeep your answers VERY\
-                \ SHORT and concise. Only the minimum necessary.\n\n\n\n\n"
-          selected: false
-          title: LLM
-          type: llm
-          variables: []
-          vision:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables: []
+      height: 54
+      id: '1738749667937'
+      position:
+        x: 9.340901853528976
+        y: -96.24128723823091
+      positionAbsolute:
+        x: 9.340901853528976
+        y: -96.24128723823091
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1741259222537'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: '{{#conversation.InfraNodusAdvice#}}
+
+
+            {{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
             enabled: false
-        height: 98
-        id: llm
-        position:
-          x: 1134.2005472489855
-          y: 702.8288014561012
-        positionAbsolute:
-          x: 1134.2005472489855
-          y: 702.8288014561012
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai
+        prompt_template:
+        - id: 9df6b409-6428-4235-9edc-04228c08ff23
+          role: system
+          text: "You are an expert in InfraNodus, and your task is to provide an answer\
+            \ to the user question based on the context you are provided about using\
+            \ InfraNodus and its tool.\n\n## IMPORTANT INSTRUCTIONS, FOLLOW WHEN ANSWERING:\n\
+            \nWhen you provide a response, use the following meta information about\
+            \ the underlying knowledge base to have a high-level overview of the content\
+            \ and to provide higher quality responses that integrate this content,\
+            \ in cases when relevant to the query (or when the query is too general\
+            \ to find results):\n\n- the main topics in the context (listed inside\
+            \ the <MainTopics></MainTopics> XML tag) — you should focus on them especially\n\
+            - relations between the concepts (listed inside <Relations></Relations>\
+            \ and <MainConcepts></MainConcepts> XML tag) — these are the most important\
+            \ ideas and relations in the context\n- latent topics inside (listed inside\
+            \ <LatentTopics></LatentTopics> - these are non-obvious topics that you\
+            \ can take into account\n- conceptual entry points (listed inside <ConceptualGateways></ConceptualGateways>\
+            \ XML tag) — use them to connect topics or to connect the knowledge to\
+            \ the outside world\n\n{{#conversation.InfraNodusGraphSummary#}}\n\n\n\
+            ## CONTEXT INFORMATION: \n\nUse the following context as your learned\
+            \ knowledge, inside <context></context> XML tags.\n<context>\n{{#context#}}\n\
+            </context>\n\nDo not hallucinate answers, ONLY use the context provided\
+            \ to generate responses, and provide references to all the context elements\
+            \ you use for your response in inline links with links to the URLs where\
+            \ these results can be found .\n\nIf you didn't use any of the context\
+            \ documents to generate your response but generated it from your own knowledge,\
+            \ inform the user about it at the beginning.\n\nKeep your answers VERY\
+            \ SHORT and concise. Only the minimum necessary.\n\n\n\n\n"
         selected: false
-        sourcePosition: right
-        targetPosition: left
-        type: custom
-        width: 244
-      - data:
-          answer: "{{#llm.text#}}"
-          desc: ""
-          selected: false
-          title: Answer
-          type: answer
-          variables: []
-        height: 103
-        id: answer
-        position:
-          x: 1460.768473447988
-          y: 534.4046317460159
-        positionAbsolute:
-          x: 1460.768473447988
-          y: 534.4046317460159
+        title: LLM with AI Query
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: llm
+      position:
+        x: 1269.4760758686473
+        y: 669.519444657227
+      positionAbsolute:
+        x: 1269.4760758686473
+        y: 669.519444657227
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#llm.text#}}'
+        desc: ''
         selected: false
-        sourcePosition: right
-        targetPosition: left
-        type: custom
-        width: 244
-      - data:
-          authorization:
-            config:
-              api_key: specify_your_key_here
-              type: bearer
-            type: api-key
-          body:
-            data:
-              - id: key-value-38
-                key: ""
-                type: text
-                value: '{
+        title: Answer First Query
+        type: answer
+        variables: []
+      height: 103
+      id: answer
+      position:
+        x: 1579.0420233953137
+        y: 470.2803324907327
+      positionAbsolute:
+        x: 1579.0420233953137
+        y: 470.2803324907327
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config:
+            api_key: your_api_key_here
+            type: bearer
+          type: api-key
+        body:
+          data:
+          - id: key-value-38
+            key: ''
+            type: text
+            value: '{
 
-                  "requestMode": "question",
+              "requestMode": "question",
 
-                  "modelToUse": "gpt-4o-mini",
+              "modelToUse": "gpt-4o-mini",
 
-                  "name": "support_nodus_labs",
+              "name": "support_nodus_labs",
 
-                  "aiTopics": "true"
+              "aiTopics": "true"
 
-                  }'
-            type: json
-          desc: ""
-          headers: ""
-          method: post
-          params: "doNotSave:true
+              }'
+          type: json
+        desc: ''
+        headers: ''
+        method: post
+        params: 'doNotSave:true
 
-            addStats:true
+          addStats:true
 
-            optimize:gap
+          optimize:gap
 
-            includeGraphSummary:true
+          includeGraphSummary:true
 
-            includeGraph:false"
-          retry_config:
-            max_retries: 3
-            retry_enabled: true
-            retry_interval: 100
-          selected: false
-          timeout:
-            max_connect_timeout: 0
-            max_read_timeout: 0
-            max_write_timeout: 0
-          title: HTTP Request
-          type: http-request
-          url: https://infranodus.com/api/v1/graphAndAdvice?doNotSave=true&addStats=true&optimize=gap&includeGraphSummary=true&includeGraph=false
-          variables: []
-        height: 199
-        id: "1741117081804"
-        position:
-          x: 517.1617350547322
-          y: -16.140713194357602
-        positionAbsolute:
-          x: 517.1617350547322
-          y: -16.140713194357602
+          includeGraph:false'
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
         selected: false
-        sourcePosition: right
-        targetPosition: left
-        type: custom
-        width: 244
-      - data:
-          desc: ""
-          items:
-            - input_type: variable
-              operation: over-write
-              value:
-                - "1741117081804"
-                - body
-              variable_selector:
-                - conversation
-                - InfraNodusResponse
-              write_mode: over-write
-          selected: false
-          title: Variable Assigner
-          type: assigner
-          version: "2"
-        height: 88
-        id: "1741123748093"
-        position:
-          x: 856.2302240386371
-          y: 58.17811656853999
-        positionAbsolute:
-          x: 856.2302240386371
-          y: 58.17811656853999
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP Request
+        type: http-request
+        url: https://infranodus.com/api/v1/graphAndAdvice?doNotSave=true&addStats=true&optimize=gap&includeGraphSummary=true&includeGraph=false
+        variables: []
+      height: 199
+      id: '1741117081804'
+      position:
+        x: 517.1617350547322
+        y: -16.140713194357602
+      positionAbsolute:
+        x: 517.1617350547322
+        y: -16.140713194357602
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1741117081804'
+          - body
+          variable_selector:
+          - conversation
+          - InfraNodusResponse
+          write_mode: over-write
         selected: false
-        sourcePosition: right
-        targetPosition: left
-        type: custom
-        width: 244
-      - data:
-          code:
-            "\nfunction main({responseBody}) {\n    let aiResponses = []\n    let\
-            \ graphSummary = ''\n    try {\n        const modelResponse = JSON.parse(responseBody)\n\
-            \        aiResponses = modelResponse.aiAdvice.map((advice)=>advice.text)\n\
-            \        graphSummary = modelResponse.graphSummary\n    }\n    catch {}\n\
-            \    return {\n        result: aiResponses[0],\n        graphSummary: graphSummary\n\
-            \    }\n}\n"
-          code_language: javascript
-          desc: ""
-          outputs:
-            graphSummary:
-              children: null
-              type: string
-            result:
-              children: null
-              type: string
-          selected: false
-          title: Code
-          type: code
-          variables:
-            - value_selector:
-                - conversation
-                - InfraNodusResponse
-              variable: responseBody
-        height: 54
-        id: "1741123840933"
-        position:
-          x: 1091.221946354497
-          y: 192.69144665635116
-        positionAbsolute:
-          x: 1091.221946354497
-          y: 192.69144665635116
+        title: Variable Assigner
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1741123748093'
+      position:
+        x: 856.2302240386371
+        y: 58.17811656853999
+      positionAbsolute:
+        x: 856.2302240386371
+        y: 58.17811656853999
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\nfunction main({responseBody}) {\n    let aiResponses = []\n    let\
+          \ graphSummary = ''\n    try {\n        const modelResponse = JSON.parse(responseBody)\n\
+          \        aiResponses = modelResponse.aiAdvice.map((advice)=>advice.text)\n\
+          \        graphSummary = modelResponse.graphSummary\n    }\n    catch {}\n\
+          \    return {\n        result: aiResponses[0],\n        graphSummary: graphSummary\n\
+          \    }\n}\n"
+        code_language: javascript
+        desc: ''
+        outputs:
+          graphSummary:
+            children: null
+            type: string
+          result:
+            children: null
+            type: string
         selected: false
-        sourcePosition: right
-        targetPosition: left
-        type: custom
-        width: 244
-      - data:
-          desc: ""
-          items:
-            - input_type: variable
-              operation: over-write
-              value:
-                - "1741123840933"
-                - result
-              variable_selector:
-                - conversation
-                - InfraNodusAdvice
-              write_mode: over-write
-          selected: false
-          title: Variable Assigner Advice
-          type: assigner
-          version: "2"
-        height: 88
-        id: "1741254723941"
-        position:
-          x: 761.568307475029
-          y: 280.977231806561
-        positionAbsolute:
-          x: 761.568307475029
-          y: 280.977231806561
+        title: Code
+        type: code
+        variables:
+        - value_selector:
+          - conversation
+          - InfraNodusResponse
+          variable: responseBody
+      height: 54
+      id: '1741123840933'
+      position:
+        x: 1091.221946354497
+        y: 192.69144665635116
+      positionAbsolute:
+        x: 1091.221946354497
+        y: 192.69144665635116
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1741123840933'
+          - result
+          variable_selector:
+          - conversation
+          - InfraNodusAdvice
+          write_mode: over-write
         selected: false
-        sourcePosition: right
-        targetPosition: left
-        type: custom
-        width: 244
-      - data:
-          desc: ""
-          items:
-            - input_type: variable
-              operation: over-write
-              value:
-                - "1741123840933"
-                - graphSummary
-              variable_selector:
-                - conversation
-                - InfraNodusGraphSummary
-              write_mode: over-write
-          selected: false
-          title: Variable Assigner Summary
-          type: assigner
-          version: "2"
-        height: 88
-        id: "1741254931276"
-        position:
-          x: 1159.5383362483449
-          y: 337.75066286512396
-        positionAbsolute:
-          x: 1159.5383362483449
-          y: 337.75066286512396
+        title: Variable Assigner Advice
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1741254723941'
+      position:
+        x: 761.568307475029
+        y: 280.977231806561
+      positionAbsolute:
+        x: 761.568307475029
+        y: 280.977231806561
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1741123840933'
+          - graphSummary
+          variable_selector:
+          - conversation
+          - InfraNodusGraphSummary
+          write_mode: over-write
         selected: false
-        sourcePosition: right
-        targetPosition: left
-        type: custom
-        width: 244
-      - data:
-          answer: "{{#conversation.InfraNodusAdvice#}}\n\n "
-          desc: ""
-          selected: false
-          title: AI Response Generated
-          type: answer
-          variables: []
-        height: 103
-        id: "1741255828710"
-        position:
-          x: 850.5488814346768
-          y: 526.9070231393092
-        positionAbsolute:
-          x: 850.5488814346768
-          y: 526.9070231393092
+        title: Variable Assigner Summary
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1741254931276'
+      position:
+        x: 1159.5383362483449
+        y: 337.75066286512396
+      positionAbsolute:
+        x: 1159.5383362483449
+        y: 337.75066286512396
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: "{{#conversation.InfraNodusAdvice#}}\n\n "
+        desc: ''
         selected: false
-        sourcePosition: right
-        targetPosition: left
-        type: custom
-        width: 244
-      - data:
-          dataset_ids:
-            - 8d2a881f-aacb-48a6-b464-4d77e26f7446
-          desc: ""
-          multiple_retrieval_config:
-            reranking_enable: true
-            reranking_mode: weighted_score
-            top_k: 4
-            weights:
-              keyword_setting:
-                keyword_weight: 0.3
-              vector_setting:
-                embedding_model_name: text-embedding-3-small
-                embedding_provider_name: openai
-                vector_weight: 0.7
-          query_variable_selector:
+        title: AI Response Generated
+        type: answer
+        variables: []
+      height: 103
+      id: '1741255828710'
+      position:
+        x: 850.5488814346768
+        y: 526.9070231393092
+      positionAbsolute:
+        x: 850.5488814346768
+        y: 526.9070231393092
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 8d2a881f-aacb-48a6-b464-4d77e26f7446
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: weighted_score
+          top_k: 4
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: text-embedding-3-small
+              embedding_provider_name: openai
+              vector_weight: 0.7
+        query_variable_selector:
+        - conversation
+        - InfraNodusAdvice
+        retrieval_mode: multiple
+        selected: false
+        title: Knowledge Retrieval AI
+        type: knowledge-retrieval
+      height: 92
+      id: '1741256114934'
+      position:
+        x: 342.36499897216345
+        y: 651.8924523920176
+      positionAbsolute:
+        x: 342.36499897216345
+        y: 651.8924523920176
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: bf38610a-1342-4a14-a84c-fe122ad0ac8f
+            value: ''
+            varType: string
+            variable_selector:
             - conversation
             - InfraNodusAdvice
-          retrieval_mode: multiple
-          selected: false
-          title: Knowledge Retrieval AI
-          type: knowledge-retrieval
-        height: 92
-        id: "1741256114934"
-        position:
-          x: 342.36499897216345
-          y: 651.8924523920176
-        positionAbsolute:
-          x: 342.36499897216345
-          y: 651.8924523920176
+          id: 'true'
+          logical_operator: and
+        desc: ''
         selected: false
-        sourcePosition: right
-        targetPosition: left
-        type: custom
-        width: 244
-      - data:
-          cases:
-            - case_id: "true"
-              conditions:
-                - comparison_operator: empty
-                  id: bf38610a-1342-4a14-a84c-fe122ad0ac8f
-                  value: ""
-                  varType: string
-                  variable_selector:
-                    - conversation
-                    - InfraNodusAdvice
-              id: "true"
-              logical_operator: and
-          desc: ""
-          selected: false
-          title: IF/ELSE
-          type: if-else
-        height: 126
-        id: "1741256512747"
-        position:
-          x: 217.16173505473222
-          y: -16.140713194357602
-        positionAbsolute:
-          x: 217.16173505473222
-          y: -16.140713194357602
+        title: IF/ELSE
+        type: if-else
+      height: 126
+      id: '1741256512747'
+      position:
+        x: 217.16173505473222
+        y: -16.140713194357602
+      positionAbsolute:
+        x: 217.16173505473222
+        y: -16.140713194357602
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - 8d2a881f-aacb-48a6-b464-4d77e26f7446
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: weighted_score
+          top_k: 4
+          weights:
+            keyword_setting:
+              keyword_weight: 0.3
+            vector_setting:
+              embedding_model_name: text-embedding-3-small
+              embedding_provider_name: openai
+              vector_weight: 0.7
+        query_variable_selector:
+        - sys
+        - query
+        retrieval_mode: multiple
         selected: false
-        sourcePosition: right
-        targetPosition: left
-        type: custom
-        width: 244
-      - data:
-          dataset_ids:
-            - 8d2a881f-aacb-48a6-b464-4d77e26f7446
-          desc: ""
-          multiple_retrieval_config:
-            reranking_enable: true
-            reranking_mode: weighted_score
-            top_k: 4
-            weights:
-              keyword_setting:
-                keyword_weight: 0.3
-              vector_setting:
-                embedding_model_name: text-embedding-3-small
-                embedding_provider_name: openai
-                vector_weight: 0.7
-          query_variable_selector:
-            - sys
-            - query
-          retrieval_mode: multiple
-          selected: false
-          title: Knowledge Retrieval User
-          type: knowledge-retrieval
-        height: 92
-        id: "1741258700226"
-        position:
-          x: 490.55765076381977
-          y: 470.2803324907327
-        positionAbsolute:
-          x: 490.55765076381977
-          y: 470.2803324907327
+        title: Knowledge Retrieval User
+        type: knowledge-retrieval
+      height: 92
+      id: '1741258700226'
+      position:
+        x: 490.55765076381977
+        y: 470.2803324907327
+      positionAbsolute:
+        x: 490.55765076381977
+        y: 470.2803324907327
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "\nfunction main({arg1, arg2}) {\n    return {\n        result: [...arg1,\
+          \ ...arg2]\n    }\n}\n"
+        code_language: javascript
+        desc: ''
+        outputs:
+          result:
+            children: null
+            type: array[object]
         selected: false
-        sourcePosition: right
-        targetPosition: left
-        type: custom
-        width: 244
-      - data:
-          code:
-            "\nfunction main({arg1, arg2}) {\n    return {\n        result: [...arg1,\
-            \ ...arg2]\n    }\n}\n"
-          code_language: javascript
-          desc: ""
-          outputs:
-            result:
-              children: null
-              type: array[object]
-          selected: false
-          title: Code Aggregate KB
-          type: code
-          variables:
-            - value_selector:
-                - "1741258700226"
-                - result
-              variable: arg1
-            - value_selector:
-                - "1741256114934"
-                - result
-              variable: arg2
-        height: 54
-        id: "1741259222537"
-        position:
-          x: 825.8325108494191
-          y: 717.8154360661262
-        positionAbsolute:
-          x: 825.8325108494191
-          y: 717.8154360661262
+        title: Code Aggregate KB
+        type: code
+        variables:
+        - value_selector:
+          - '1741258700226'
+          - result
+          variable: arg1
+        - value_selector:
+          - '1741256114934'
+          - result
+          variable: arg2
+      height: 54
+      id: '1741259222537'
+      position:
+        x: 621.1687999252526
+        y: 835.363787396882
+      positionAbsolute:
+        x: 621.1687999252526
+        y: 835.363787396882
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - llm
+          - text
+          variable_selector:
+          - conversation
+          - FirstChatAnswer
+          write_mode: over-write
         selected: false
-        sourcePosition: right
-        targetPosition: left
-        type: custom
-        width: 244
+        title: Variable Assigner First Answer
+        type: assigner
+        version: '2'
+      height: 88
+      id: '1741260440489'
+      position:
+        x: 1602.1816441558392
+        y: 757.5374179550038
+      positionAbsolute:
+        x: 1602.1816441558392
+        y: 757.5374179550038
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1741259222537'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 10
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-4o-mini
+          provider: openai
+        prompt_template:
+        - id: 9df6b409-6428-4235-9edc-04228c08ff23
+          role: system
+          text: "You are an expert in InfraNodus, and your task is to provide an answer\
+            \ to the user question based on the context you are provided about using\
+            \ InfraNodus and its tool.\n\n## IMPORTANT INSTRUCTIONS, FOLLOW WHEN ANSWERING:\n\
+            \nWhen you provide a response, use the following meta information about\
+            \ the underlying knowledge base to have a high-level overview of the content\
+            \ and to provide higher quality responses that integrate this content,\
+            \ in cases when relevant to the query (or when the query is too general\
+            \ to find results):\n\n- the main topics in the context (listed inside\
+            \ the <MainTopics></MainTopics> XML tag) — you should focus on them especially\n\
+            - relations between the concepts (listed inside <Relations></Relations>\
+            \ and <MainConcepts></MainConcepts> XML tag) — these are the most important\
+            \ ideas and relations in the context\n- latent topics inside (listed inside\
+            \ <LatentTopics></LatentTopics> - these are non-obvious topics that you\
+            \ can take into account\n- conceptual entry points (listed inside <ConceptualGateways></ConceptualGateways>\
+            \ XML tag) — use them to connect topics or to connect the knowledge to\
+            \ the outside world\n\n{{#conversation.InfraNodusGraphSummary#}}\n\n\n\
+            ## CONTEXT INFORMATION: \n\nUse the following context as your learned\
+            \ knowledge, inside <context></context> XML tags.\n<context>\n{{#context#}}\n\
+            </context>\n\nDo not hallucinate answers, ONLY use the context provided\
+            \ to generate responses, and provide references to all the context elements\
+            \ you use for your response in inline links with links to the URLs where\
+            \ these results can be found .\n\nIf you didn't use any of the context\
+            \ documents to generate your response but generated it from your own knowledge,\
+            \ inform the user about it at the beginning.\n\nKeep your answers VERY\
+            \ SHORT and concise. Only the minimum necessary.\n\n\n\n\n"
+        selected: false
+        title: LLM just user query
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 98
+      id: '17412610932500'
+      position:
+        x: 1269.4760758686473
+        y: 846.456009939725
+      positionAbsolute:
+        x: 1269.4760758686473
+        y: 846.456009939725
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: empty
+            id: 2d5b2fd7-f4f4-40a6-8b08-39a6e008ffe1
+            value: ''
+            varType: string
+            variable_selector:
+            - conversation
+            - FirstChatAnswer
+          id: 'true'
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: IF/ELSE First Time?
+        type: if-else
+      height: 126
+      id: '1741261117254'
+      position:
+        x: 943.4352493392278
+        y: 790.0577613477112
+      positionAbsolute:
+        x: 943.4352493392278
+        y: 790.0577613477112
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#17412610932500.text#}}'
+        desc: ''
+        selected: false
+        title: Answer Subsequent Queries
+        type: answer
+        variables: []
+      height: 103
+      id: '1741261630716'
+      position:
+        x: 1565.5609679485271
+        y: 914.5259380527582
+      positionAbsolute:
+        x: 1565.5609679485271
+        y: 914.5259380527582
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
     viewport:
-      x: 27.3032286411526
-      y: 129.37699657959803
-      zoom: 0.6974232107066589
+      x: 96.46212346090454
+      y: 105.75938338043494
+      zoom: 0.6317033261530204
