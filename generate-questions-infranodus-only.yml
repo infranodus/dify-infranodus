@@ -1,0 +1,648 @@
+app:
+  description:
+    Helps users find out about InfraNodus functionality as well as network
+    science and text analysis
+  icon: 🤖
+  icon_background: "#FFEAD5"
+  mode: advanced-chat
+  name: NL Support Q&A GraphRAG
+  use_icon_as_answer_icon: true
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables:
+    - description: ""
+      id: 61c2ce0e-46d9-4aab-8043-c4d59fc7c10a
+      name: PreviousChatAnswer
+      selector:
+        - conversation
+        - PreviousChatAnswer
+      value: ""
+      value_type: string
+    - description: ""
+      id: 0061fd58-fd2e-4183-8468-ab1936d9bc7c
+      name: KBFromAIQuery
+      selector:
+        - conversation
+        - KBFromAIQuery
+      value: []
+      value_type: array[object]
+    - description: ""
+      id: 46b4ae96-8db7-4cc7-98d7-c4c3633781d4
+      name: KBFromUserQuery
+      selector:
+        - conversation
+        - KBFromUserQuery
+      value: []
+      value_type: array[object]
+    - description: ""
+      id: a41e1283-ce63-45a4-806c-c65baec9deba
+      name: InfraNodusGraphSummary
+      selector:
+        - conversation
+        - InfraNodusGraphSummary
+      value: ""
+      value_type: string
+    - description: ""
+      id: db3365d0-9b50-494d-bc26-a47ad93d80c3
+      name: InfraNodusAdvice
+      selector:
+        - conversation
+        - InfraNodusAdvice
+      value: ""
+      value_type: string
+    - description: ""
+      id: 62f01643-eec3-456d-b228-b84a64abdde6
+      name: InfraNodusResponse
+      selector:
+        - conversation
+        - InfraNodusResponse
+      value: ""
+      value_type: string
+  environment_variables: []
+  features:
+    file_upload:
+      allowed_file_extensions:
+        - .JPG
+        - .JPEG
+        - .PNG
+        - .GIF
+        - .WEBP
+        - .SVG
+      allowed_file_types:
+        - image
+      allowed_file_upload_methods:
+        - local_file
+        - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+          - local_file
+          - remote_url
+      number_limits: 3
+    opening_statement:
+      Start with a question or click "Generate Question" below to
+      generate an interesting research question that will query the InfraNodus support
+      portal.
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions:
+      - Generate Question
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ""
+      voice: ""
+  graph:
+    edges:
+      - data:
+          isInIteration: false
+          sourceType: http-request
+          targetType: assigner
+        id: 1741117081804-source-1741123748093-target
+        source: "1741117081804"
+        sourceHandle: source
+        target: "1741123748093"
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      - data:
+          isInIteration: false
+          sourceType: assigner
+          targetType: code
+        id: 1741123748093-source-1741123840933-target
+        source: "1741123748093"
+        sourceHandle: source
+        target: "1741123840933"
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      - data:
+          isInIteration: false
+          sourceType: code
+          targetType: assigner
+        id: 1741123840933-source-1741254723941-target
+        source: "1741123840933"
+        sourceHandle: source
+        target: "1741254723941"
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      - data:
+          isInIteration: false
+          sourceType: code
+          targetType: assigner
+        id: 1741123840933-source-1741254931276-target
+        source: "1741123840933"
+        sourceHandle: source
+        target: "1741254931276"
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      - data:
+          isInIteration: false
+          sourceType: assigner
+          targetType: answer
+        id: 1741254723941-source-1741255828710-target
+        source: "1741254723941"
+        sourceHandle: source
+        target: "1741255828710"
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      - data:
+          isInIteration: false
+          sourceType: start
+          targetType: if-else
+        id: 1738749667937-source-1741256512747-target
+        source: "1738749667937"
+        sourceHandle: source
+        target: "1741256512747"
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      - data:
+          isInIteration: false
+          sourceType: if-else
+          targetType: http-request
+        id: 1741256512747-true-1741117081804-target
+        source: "1741256512747"
+        sourceHandle: "true"
+        target: "1741117081804"
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      - data:
+          isInIteration: false
+          sourceType: assigner
+          targetType: answer
+        id: 1741254931276-source-1741255828710-target
+        source: "1741254931276"
+        sourceHandle: source
+        target: "1741255828710"
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      - data:
+          isInIteration: false
+          sourceType: if-else
+          targetType: tool
+        id: 1741256512747-false-1741300004392-target
+        source: "1741256512747"
+        sourceHandle: "false"
+        target: "1741300004392"
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      - data:
+          isInIteration: false
+          sourceType: tool
+          targetType: code
+        id: 1741300004392-source-1741302084849-target
+        source: "1741300004392"
+        sourceHandle: source
+        target: "1741302084849"
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      - data:
+          isInIteration: false
+          sourceType: code
+          targetType: answer
+        id: 1741302084849-source-1741302303093-target
+        source: "1741302084849"
+        sourceHandle: source
+        target: "1741302303093"
+        targetHandle: target
+        type: custom
+        zIndex: 0
+      - data:
+          isInIteration: false
+          sourceType: code
+          targetType: assigner
+        id: 1741302084849-source-1741302666626-target
+        source: "1741302084849"
+        sourceHandle: source
+        target: "1741302666626"
+        targetHandle: target
+        type: custom
+        zIndex: 0
+    nodes:
+      - data:
+          desc: ""
+          selected: false
+          title: Start
+          type: start
+          variables: []
+        height: 54
+        id: "1738749667937"
+        position:
+          x: 30
+          y: 267.5
+        positionAbsolute:
+          x: 30
+          y: 267.5
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 244
+      - data:
+          authorization:
+            config:
+              api_key: your_api_key_here
+              type: bearer
+            type: api-key
+          body:
+            data:
+              - id: key-value-4
+                key: ""
+                type: text
+                value: '{
+
+                  "requestMode": "question",
+
+                  "modelToUse": "gpt-4o-mini",
+
+                  "name": "support_nodus_labs",
+
+                  "aiTopics": "true"
+
+                  }'
+            type: json
+          desc: ""
+          headers: ""
+          method: post
+          params: "doNotSave:true
+
+            addStats:true
+
+            optimize:gap
+
+            includeGraphSummary:true
+
+            includeGraph:false"
+          retry_config:
+            max_retries: 3
+            retry_enabled: true
+            retry_interval: 100
+          selected: false
+          timeout:
+            max_connect_timeout: 0
+            max_read_timeout: 0
+            max_write_timeout: 0
+          title: HTTP Request
+          type: http-request
+          url: https://infranodus.com/api/v1/graphAndAdvice
+          variables: []
+        height: 135
+        id: "1741117081804"
+        position:
+          x: 691.1520239038646
+          y: 38.651008191693336
+        positionAbsolute:
+          x: 691.1520239038646
+          y: 38.651008191693336
+        selected: true
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 244
+      - data:
+          desc: ""
+          items:
+            - input_type: variable
+              operation: over-write
+              value:
+                - "1741117081804"
+                - body
+              variable_selector:
+                - conversation
+                - InfraNodusResponse
+              write_mode: over-write
+          selected: false
+          title: Variable Assigner
+          type: assigner
+          version: "2"
+        height: 88
+        id: "1741123748093"
+        position:
+          x: 869.6541896864062
+          y: 274.88222554220346
+        positionAbsolute:
+          x: 869.6541896864062
+          y: 274.88222554220346
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 244
+      - data:
+          code:
+            "\nfunction main({responseBody}) {\n    let aiResponses = []\n    let\
+            \ graphSummary = ''\n    let randomIndex = 0\n    try {\n        const modelResponse\
+            \ = JSON.parse(responseBody)\n        aiResponses = modelResponse.aiAdvice.map((advice)=>advice.text)\n\
+            \        graphSummary = modelResponse.graphSummary\n        randomIndex\
+            \ = Math.floor(Math.random() * aiResponses.length);\n    }\n    catch {}\n\
+            \    return {\n        result: aiResponses[randomIndex],\n        graphSummary:\
+            \ graphSummary\n    }\n}\n"
+          code_language: javascript
+          desc: ""
+          outputs:
+            graphSummary:
+              children: null
+              type: string
+            result:
+              children: null
+              type: string
+          selected: false
+          title: Code
+          type: code
+          variables:
+            - value_selector:
+                - conversation
+                - InfraNodusResponse
+              variable: responseBody
+        height: 54
+        id: "1741123840933"
+        position:
+          x: 1136.743061975389
+          y: 130.190604915016
+        positionAbsolute:
+          x: 1136.743061975389
+          y: 130.190604915016
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 244
+      - data:
+          desc: ""
+          items:
+            - input_type: variable
+              operation: over-write
+              value:
+                - "1741123840933"
+                - result
+              variable_selector:
+                - conversation
+                - InfraNodusAdvice
+              write_mode: over-write
+          selected: false
+          title: Variable Assigner Advice
+          type: assigner
+          version: "2"
+        height: 88
+        id: "1741254723941"
+        position:
+          x: 1496.8479760961352
+          y: 195.15418968640626
+        positionAbsolute:
+          x: 1496.8479760961352
+          y: 195.15418968640626
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 244
+      - data:
+          desc: ""
+          items:
+            - input_type: variable
+              operation: over-write
+              value:
+                - "1741123840933"
+                - graphSummary
+              variable_selector:
+                - conversation
+                - InfraNodusGraphSummary
+              write_mode: over-write
+          selected: false
+          title: Variable Assigner Summary
+          type: assigner
+          version: "2"
+        height: 88
+        id: "1741254931276"
+        position:
+          x: 1373.0735629569165
+          y: 441.2508002101383
+        positionAbsolute:
+          x: 1373.0735629569165
+          y: 441.2508002101383
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 244
+      - data:
+          answer: "{{#conversation.InfraNodusAdvice#}}\n\n "
+          desc: ""
+          selected: false
+          title: AI Response Generated
+          type: answer
+          variables: []
+        height: 103
+        id: "1741255828710"
+        position:
+          x: 1725.54927556566
+          y: 441.2508002101383
+        positionAbsolute:
+          x: 1725.54927556566
+          y: 441.2508002101383
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 244
+      - data:
+          cases:
+            - case_id: "true"
+              conditions:
+                - comparison_operator: is
+                  id: bf38610a-1342-4a14-a84c-fe122ad0ac8f
+                  value: Generate Question
+                  varType: string
+                  variable_selector:
+                    - sys
+                    - query
+              id: "true"
+              logical_operator: and
+          desc: ""
+          selected: false
+          title: IF/ELSE
+          type: if-else
+        height: 126
+        id: "1741256512747"
+        position:
+          x: 345.8115608675255
+          y: 29.792337541049193
+        positionAbsolute:
+          x: 345.8115608675255
+          y: 29.792337541049193
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 244
+      - data:
+          desc: ""
+          provider_id: 4150a91f-e3e7-4d2e-a20c-e89c4843c688
+          provider_name: InfraNodus AI Advice
+          provider_type: api
+          selected: false
+          title: graphAndAdvice_post
+          tool_configurations: {}
+          tool_label: graphAndAdvice_post
+          tool_name: graphAndAdvice_post
+          tool_parameters:
+            addStats:
+              type: mixed
+              value: "true"
+            aiTopics:
+              type: mixed
+              value: "true"
+            doNotSave:
+              type: mixed
+              value: "true"
+            hops:
+              type: constant
+              value: 1
+            includeGraph:
+              type: mixed
+              value: "false"
+            includeGraphSummary:
+              type: mixed
+              value: "true"
+            includeStatements:
+              type: mixed
+              value: "true"
+            modelToUse:
+              type: mixed
+              value: gpt-4o-mini
+            name:
+              type: mixed
+              value: support_nodus_labs
+            optimize:
+              type: mixed
+              value: reinforce
+            prompt:
+              type: mixed
+              value: "{{#sys.query#}}
+
+                "
+            requestMode:
+              type: mixed
+              value: chat
+          type: tool
+        height: 54
+        id: "1741300004392"
+        position:
+          x: 385.52788645664236
+          y: 520.5
+        positionAbsolute:
+          x: 385.52788645664236
+          y: 520.5
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 244
+      - data:
+          code:
+            "\nfunction main({infraResponse}) {\n    const infraJson = JSON.parse(infraResponse)\n\
+            \    const aiAdvice = infraJson.aiAdvice\n    return {\n        chosenResponse:\
+            \ aiAdvice[0].text \n    }\n}\n"
+          code_language: javascript
+          desc: ""
+          outputs:
+            chosenResponse:
+              children: null
+              type: string
+          selected: false
+          title: Convert Infra Advice to Text
+          type: code
+          variables:
+            - value_selector:
+                - "1741300004392"
+                - text
+              variable: infraResponse
+        height: 54
+        id: "1741302084849"
+        position:
+          x: 652.6167587456252
+          y: 636.0374309407812
+        positionAbsolute:
+          x: 652.6167587456252
+          y: 636.0374309407812
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 244
+      - data:
+          answer: "{{#1741302084849.chosenResponse#}}"
+          desc: ""
+          selected: false
+          title: Final Responser
+          type: answer
+          variables: []
+        height: 103
+        id: "1741302303093"
+        position:
+          x: 1024.5332337338966
+          y: 486.7569380246109
+        positionAbsolute:
+          x: 1024.5332337338966
+          y: 486.7569380246109
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 244
+      - data:
+          desc: ""
+          items:
+            - input_type: variable
+              operation: over-write
+              value:
+                - "1741302084849"
+                - chosenResponse
+              variable_selector:
+                - conversation
+                - PreviousChatAnswer
+              write_mode: over-write
+          selected: false
+          title: Variable Assigner Answer
+          type: assigner
+          version: "2"
+        height: 88
+        id: "1741302666626"
+        position:
+          x: 955.1403136371844
+          y: 739.0138760492218
+        positionAbsolute:
+          x: 955.1403136371844
+          y: 739.0138760492218
+        selected: false
+        sourcePosition: right
+        targetPosition: left
+        type: custom
+        width: 244
+    viewport:
+      x: 16.65021056088932
+      y: 64.94049451868614
+      zoom: 0.6773025250197928
